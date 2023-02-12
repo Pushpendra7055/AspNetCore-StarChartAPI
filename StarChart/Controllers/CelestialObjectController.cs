@@ -14,7 +14,7 @@ namespace StarChart.Controllers
             _context = context;
         }
         [HttpGet("{id:int}", Name = "GetById")]
-        public ActionResult GetById(int id)
+        public IActionResult GetById(int id)
         {
             var celestialObject = _context.CelestialObjects.Find(id);
             if (celestialObject == null)
@@ -25,7 +25,7 @@ namespace StarChart.Controllers
             return Ok(celestialObject);
         }
         [HttpGet("{string:name}")]
-        public ActionResult GetByName(string Name)
+        public IActionResult GetByName(string Name)
         {
             var celestialObjects = _context.CelestialObjects.Where(_e => _e.Name == Name).ToList();
             if (!celestialObjects.Any())
@@ -42,7 +42,7 @@ namespace StarChart.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetAll()
+        public IActionResult GetAll()
         {
             var celestialObjects = _context.CelestialObjects.ToList();
 
